@@ -1,0 +1,35 @@
+# Unity generated folders
+Anxiety In Lines/Library/
+Anxiety In Lines/Temp/
+Anxiety In Lines/Obj/
+Anxiety In Lines/Build/
+Anxiety In Lines/Builds/
+Anxiety In Lines/Logs/
+Anxiety In Lines/UserSettings/
+
+# Unity generated project files
+Anxiety In Lines/*.csproj
+Anxiety In Lines/*.sln
+Anxiety In Lines/*.suo
+Anxiety In Lines/*.user
+Anxiety In Lines/*.userprefs
+Anxiety In Lines/*.pidb
+Anxiety In Lines/*.booproj
+
+# Unity crash and profiler output
+Anxiety In Lines/sysinfo.txt
+Anxiety In Lines/*.stackdump
+Anxiety In Lines/MemoryCaptures/
+Anxiety In Lines/Recordings/
+
+# Asset store tools and generated data
+Anxiety In Lines/Assets/AssetStoreTools*
+Anxiety In Lines/Assets/StreamingAssets/aa.meta
+Anxiety In Lines/Assets/StreamingAssets/aa/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local assistant/tooling state
+.workbuddy/
