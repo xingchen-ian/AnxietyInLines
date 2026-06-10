@@ -96,3 +96,31 @@ The documentation now reflects the actual first version: the core queue system h
 
 ### Student Follow-up
 No follow-up decision yet. A likely next step is to add `GameManager` to `SampleScene`, verify the game loop in Unity, and then decide whether to strengthen the emotional expression of anxiety through feedback, pacing, NPC behavior, or visual/audio pressure.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 04 — Raw Interaction Log
+
+**Time:** 2026-06-10 08:00 CST  
+**Development Stage:** Version control and GitHub publishing preparation  
+**Current Goal:** Prepare the Unity project to be pushed to GitHub without uploading generated Unity cache files.
+
+### Student Prompt
+The student asked the AI Agent to push the project to GitHub.
+
+### Agent Response Summary
+The AI Agent checked the project and found that it was not yet a Git repository. It also checked GitHub CLI and found that `gh` was installed, but the existing GitHub login token was invalid. The AI Agent created a Unity-focused `.gitignore`, initialized a local Git repository, staged only source/project files and documentation, and created an initial local commit.
+
+### Development Action
+Set up local version control and prepared the project for GitHub publishing. This did not change the playable game, but it changed the development workflow by making the project ready for source control.
+
+### Files / Mechanics Changed
+- Created `.gitignore`
+- Initialized local Git repository
+- Committed Unity source files, project settings, package files, and documentation
+- No Unity gameplay script, scene object, mechanic, visual asset, or input behavior was changed.
+
+### Immediate Result
+The project now has a clean local Git commit that excludes Unity-generated folders such as `Library/`, `Temp/`, `Logs/`, and `UserSettings/`. Actual push to GitHub is blocked until the GitHub CLI account is re-authenticated.
+
+### Student Follow-up
+The student needs to re-authenticate GitHub CLI with `gh auth login -h github.com` or provide another accessible GitHub remote before the AI Agent can complete the upload.
