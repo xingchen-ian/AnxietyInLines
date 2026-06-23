@@ -645,3 +645,33 @@ The local website now looks closer to the provided retro graphic poster referenc
 
 ### Student Follow-up
 No follow-up decision yet. The next likely step is to visually review the redesigned pages and decide whether to push the updated style to GitHub Pages.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 23 — Raw Interaction Log
+
+**Time:** 2026-06-23 22:09 CST  
+**Development Stage:** GitHub Pages style-cache fix  
+**Current Goal:** Make the newly published website art style visible on GitHub Pages.
+
+### Student Prompt
+The student opened the GitHub Pages URL and reported that the website art style did not appear to have changed.
+
+### Agent Response Summary
+The AI Agent checked the live GitHub Pages HTML and CSS. The deployed CSS already contained the new poster-style rules, but the HTML linked to `styles.css` without a version string, making browser or CDN caching the likely reason the student still saw the old style. The AI Agent updated all four website pages to load `styles.css?v=20260623-poster`.
+
+### Development Action
+Added a CSS cache-busting version query to the website's stylesheet link on every page.
+
+### Files / Mechanics Changed
+- Modified `website/index.html`
+- Modified `website/design.html`
+- Modified `website/game-world.html`
+- Modified `website/development.html`
+- Modified `agent-development-log.md`
+- No Unity gameplay script, scene object, mechanic, visual asset, or input behavior was changed by the AI Agent in this step.
+
+### Immediate Result
+The next GitHub Pages deployment should force browsers to request the updated poster-style CSS instead of reusing a cached old stylesheet.
+
+### Student Follow-up
+No follow-up decision yet. The next likely step is to refresh the GitHub Pages URL after deployment and confirm that the visual style changes are visible.
