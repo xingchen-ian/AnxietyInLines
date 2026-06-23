@@ -6,6 +6,7 @@ Anxiety In Lines/Build/
 Anxiety In Lines/Builds/
 Anxiety In Lines/Logs/
 Anxiety In Lines/UserSettings/
+Anxiety In Lines/.idea/
 
 # Unity generated project files
 Anxiety In Lines/*.csproj
@@ -21,6 +22,14 @@ Anxiety In Lines/sysinfo.txt
 Anxiety In Lines/*.stackdump
 Anxiety In Lines/MemoryCaptures/
 Anxiety In Lines/Recordings/
+webgl-build.log
+
+# Unity-generated test run resources
+Anxiety In Lines/Assets/Resources/PerformanceTestRunInfo.json
+Anxiety In Lines/Assets/Resources/PerformanceTestRunInfo.json.meta
+Anxiety In Lines/Assets/Resources/PerformanceTestRunSettings.json
+Anxiety In Lines/Assets/Resources/PerformanceTestRunSettings.json.meta
+Anxiety In Lines/Assets/Resources.meta
 
 # Asset store tools and generated data
 Anxiety In Lines/Assets/AssetStoreTools*

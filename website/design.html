@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Design - Anxiety In Lines</title>
+    <meta name="description" content="Design model for Anxiety In Lines.">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Anxiety In Lines home">
+        <span class="brand-mark"></span>
+        <span>Anxiety In Lines</span>
+      </a>
+      <nav class="nav" aria-label="Site navigation">
+        <a href="index.html">Game</a>
+        <a class="active" href="design.html">Design</a>
+        <a href="game-world.html">Game World</a>
+        <a href="development.html">Development</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <p class="eyebrow">Design</p>
+        <h1>Everyday queue anxiety as mechanics</h1>
+        <p class="lead">
+          The design translates the ordinary experience of waiting in line into rules, data, and decisions that create uncertainty and social pressure.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <div class="design-grid">
+          <article>
+            <h3>Original Life Experience</h3>
+            <p>Waiting in line becomes tense when the pace is unpredictable, people ahead delay progress, and the player has little control in a confined social space.</p>
+          </article>
+          <article>
+            <h3>Core Emotion</h3>
+            <p>Anxiety created by uncertainty, waiting, limited agency, and pressure from nearby strangers.</p>
+          </article>
+          <article>
+            <h3>Core Mechanic</h3>
+            <p>Manage position in a queue under a time limit. Move forward, negotiate, hold position, choose a line, or let others go first.</p>
+          </article>
+        </div>
+
+        <div class="data-flow">
+          <div class="data-node">
+            <span>NoP</span>
+            <p>Number of people ahead of the player</p>
+          </div>
+          <div class="data-node">
+            <span>RWT</span>
+            <p>Random waiting time for each NPC</p>
+          </div>
+          <div class="data-node">
+            <span>GT</span>
+            <p>Remaining in-game time</p>
+          </div>
+          <div class="data-node outcome">
+            <span>Outcome</span>
+            <p>Win if NoP reaches zero before GT expires</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section framework-section">
+        <div class="section-heading">
+          <p class="eyebrow">Framework Graph</p>
+          <h2>Queue system structure</h2>
+          <p>The graph maps the original life experience into game world conditions, player input, resources, and win/loss states.</p>
+        </div>
+
+        <div class="framework-graph" aria-label="Anxiety In Lines game framework graph">
+          <svg class="framework-svg" viewBox="0 0 1600 760" role="img" aria-labelledby="frameworkTitle frameworkDesc">
+            <title id="frameworkTitle">Anxiety In Lines game framework graph</title>
+            <desc id="frameworkDesc">A three-column graph showing game world states, player inputs, and game resources for the queue anxiety game.</desc>
+            <defs>
+              <marker id="frameworkArrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z"></path>
+              </marker>
+            </defs>
+
+            <rect class="svg-board" x="10" y="10" width="1580" height="740" rx="12"></rect>
+            <rect class="svg-column" x="40" y="42" width="470" height="676"></rect>
+            <rect class="svg-column" x="565" y="42" width="470" height="676"></rect>
+            <rect class="svg-column" x="1090" y="42" width="470" height="676"></rect>
+
+            <text class="svg-heading" x="275" y="86">Game World</text>
+            <text class="svg-heading" x="800" y="86">Player Input</text>
+            <text class="svg-heading" x="1325" y="86">Game Resource</text>
+
+            <g class="svg-card">
+              <rect x="82" y="132" width="386" height="126" rx="10"></rect>
+              <text class="svg-title" x="275" y="170">Win</text>
+              <text x="275" y="204">NoP == 0</text>
+              <text x="275" y="230">&amp;&amp; GT &gt; 0</text>
+            </g>
+
+            <g class="svg-diamond">
+              <polygon points="275,294 470,370 275,446 80,370"></polygon>
+              <text class="svg-title" x="275" y="342">Time Check</text>
+              <text x="275" y="376">GT &gt; 0 or</text>
+              <text x="275" y="404">GT &lt;= 0</text>
+            </g>
+
+            <g class="svg-card svg-card-dark">
+              <rect x="82" y="480" width="386" height="126" rx="10"></rect>
+              <text class="svg-title" x="275" y="518">Game Over</text>
+              <text x="275" y="552">NoP &gt; 0</text>
+              <text x="275" y="578">&amp;&amp; GT &lt;= 0</text>
+            </g>
+
+            <g class="svg-card">
+              <rect x="82" y="648" width="386" height="52" rx="10"></rect>
+              <text class="svg-title" x="275" y="682">GT -= Time.deltaTime</text>
+            </g>
+
+            <g class="svg-diamond">
+              <polygon points="800,112 1016,204 800,296 584,204"></polygon>
+              <text class="svg-title" x="800" y="184">Key: Up</text>
+              <text x="800" y="220">Move to next position</text>
+              <text x="800" y="250">NoP - 1</text>
+            </g>
+
+            <g class="svg-diamond">
+              <polygon points="800,334 1016,426 800,518 584,426"></polygon>
+              <text class="svg-title" x="800" y="400">Key: Y or N</text>
+              <text x="800" y="434">Persuade others to let you go first</text>
+              <text x="800" y="464">NoP - 1</text>
+            </g>
+
+            <g class="svg-diamond">
+              <polygon points="800,554 1016,646 800,738 584,646"></polygon>
+              <text class="svg-title" x="800" y="620">Key: Y or N</text>
+              <text x="800" y="654">Allow others to go first</text>
+              <text x="800" y="684">NoP + 1</text>
+            </g>
+
+            <g class="svg-card">
+              <rect x="1130" y="116" width="390" height="132" rx="10"></rect>
+              <text class="svg-title" x="1325" y="166">NoP</text>
+              <text x="1325" y="204">Number of People</text>
+              <text x="1325" y="234">Integer</text>
+            </g>
+
+            <g class="svg-card">
+              <rect x="1130" y="336" width="390" height="150" rx="10"></rect>
+              <text class="svg-title" x="1325" y="384">RWT</text>
+              <text x="1325" y="422">Random Wait Time</text>
+              <text x="1325" y="452">Float</text>
+              <text x="1325" y="478">Random.Range(A1, A2)</text>
+            </g>
+
+            <g class="svg-card">
+              <rect x="1130" y="590" width="390" height="112" rx="10"></rect>
+              <text class="svg-title" x="1325" y="638">GT</text>
+              <text x="1325" y="676">Game Time</text>
+            </g>
+
+            <g class="svg-arrow-lines">
+              <path d="M1130 182 C1084 182, 1060 188, 1026 202"></path>
+              <path d="M1130 410 C1082 410, 1055 416, 1026 424"></path>
+              <path d="M1130 646 C1084 646, 1058 646, 1026 646"></path>
+              <path d="M584 204 C536 204, 514 176, 476 176"></path>
+              <path d="M584 426 C520 426, 510 370, 478 370"></path>
+              <path d="M584 646 C522 646, 512 670, 476 674"></path>
+              <path d="M275 648 L275 614"></path>
+              <path d="M275 480 L275 454"></path>
+              <path d="M247 294 C238 274, 238 263, 260 263"></path>
+              <path d="M303 294 C314 274, 316 263, 290 263"></path>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <section class="content-section build-section">
+        <div class="section-heading">
+          <p class="eyebrow">Player Decisions</p>
+          <h2>Queue pressure becomes choice pressure</h2>
+        </div>
+        <div class="build-grid">
+          <article>
+            <h3>Move forward</h3>
+            <p>The player advances when the next position opens. This expresses the desire to reduce waiting and regain control.</p>
+          </article>
+          <article>
+            <h3>Negotiate</h3>
+            <p>The player can attempt to persuade or cut in, but failure costs time and can increase tension.</p>
+          </article>
+          <article>
+            <h3>Wait or yield</h3>
+            <p>Waiting preserves social order but may weaken the player's chance to reach the counter before time expires.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Anxiety In Lines</span>
+      <span>Design model from everyday life.</span>
+    </footer>
+  </body>
+</html>

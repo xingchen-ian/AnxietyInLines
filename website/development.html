@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Development - Anxiety In Lines</title>
+    <meta name="description" content="Development timeline and build notes for Anxiety In Lines.">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Anxiety In Lines home">
+        <span class="brand-mark"></span>
+        <span>Anxiety In Lines</span>
+      </a>
+      <nav class="nav" aria-label="Site navigation">
+        <a href="index.html">Game</a>
+        <a href="design.html">Design</a>
+        <a href="game-world.html">Game World</a>
+        <a class="active" href="development.html">Development</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <p class="eyebrow">Development</p>
+        <h1>Human-AI collaboration timeline</h1>
+        <p class="lead">
+          This page records how the project develops through prompts, AI responses, implementation steps, checks, and documentation updates.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <div id="timeline" class="timeline" aria-live="polite">
+          <p>Loading development log...</p>
+        </div>
+      </section>
+
+      <section class="content-section build-section">
+        <div class="section-heading">
+          <p class="eyebrow">Build Notes</p>
+          <h2>Current implementation state</h2>
+        </div>
+        <div class="build-grid">
+          <article>
+            <h3>Unity scenes</h3>
+            <p><code>SampleScene</code> contains the queue prototype. <code>GreenGuy</code> exists as a movement and animation test scene.</p>
+          </article>
+          <article>
+            <h3>Scripts</h3>
+            <p><code>GameManager</code>, <code>PlayerController</code>, <code>NPCController</code>, <code>GameUI</code>, <code>GreenGuy_Controller</code>, and <code>GreenGuy_AnimationManager</code>.</p>
+          </article>
+          <article>
+            <h3>Next export target</h3>
+            <p>Build the Unity project for WebGL, then copy the exported build into <code>website/game/</code> so the Game page can host it.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Anxiety In Lines</span>
+      <span>Development timeline and build notes.</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

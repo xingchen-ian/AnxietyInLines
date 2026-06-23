@@ -152,3 +152,217 @@ The project is now available on GitHub as a private repository. The remote `main
 
 ### Student Follow-up
 No follow-up decision yet. Future development changes can now be committed locally and pushed to the same GitHub repository.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 06 — Raw Interaction Log
+
+**Time:** 2026-06-23 11:00 CST  
+**Development Stage:** Local showcase website setup  
+**Current Goal:** Check whether the project already has a local website, and if not, create one to present development content and eventually host the final Web version of the game.
+
+### Student Prompt
+The student asked whether the current project already had a local website. If not, the student wanted to create one that shows development content and displays the final game as a Web version.
+
+### Agent Response Summary
+The AI Agent checked the project and found no existing website files and no Unity WebGL build folder. It also detected later Unity development work beyond the first prototype, including `GreenGuy.unity`, GreenGuy movement and animation scripts, animation assets, and imported sprite references. The AI Agent created a static website under `website/` with sections for the game concept, core data structure, visual references, development timeline, current implementation state, and a placeholder area for a future Unity WebGL build.
+
+### Development Action
+Created a local static website for project presentation and future WebGL hosting. The website reads `agent-development-log.md` to display the collaboration timeline and reserves `website/game/index.html` as the expected entry point for the final Unity WebGL export.
+
+### Files / Mechanics Changed
+- Created `website/index.html`
+- Created `website/styles.css`
+- Created `website/script.js`
+- Created `website/README.md`
+- Created `website/game/README.md`
+- Modified `PROJECT_INDEX.md`
+- Modified `agent-development-log.md`
+- No Unity gameplay script, scene object, mechanic, visual asset, or input behavior was changed by the AI Agent in this step.
+
+### Immediate Result
+The project now has a local website scaffold. It can present the concept and development record immediately, while the playable game area currently shows a "Web build not exported yet" state until a Unity WebGL build is exported into `website/game/`.
+
+### Student Follow-up
+No follow-up decision yet. The next likely step is to preview the local website in a browser, then export a Unity WebGL build when the game is ready for Web presentation.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 07 — Raw Interaction Log
+
+**Time:** 2026-06-23 11:26 CST  
+**Development Stage:** Website information architecture revision  
+**Current Goal:** Restructure the local website into four required subpages: Game, Design, Game World, and Development.
+
+### Student Prompt
+The student clarified that the website structure should consist of four subpages: `Game` as the homepage, `Design`, `Game World`, and `Development`.
+
+### Agent Response Summary
+The AI Agent changed the website from a single-page scrolling showcase into a four-page static website. `index.html` now functions as the Game homepage and WebGL host. New pages were created for `Design`, `Game World`, and `Development`. Navigation was updated across all pages, shared styling was expanded for page headers and active navigation states, and the JavaScript was adjusted so timeline and WebGL checks only run on pages where the relevant elements exist.
+
+### Development Action
+Reorganized the website's information architecture to match the student's requested four-page structure.
+
+### Files / Mechanics Changed
+- Rebuilt `website/index.html` as the Game homepage
+- Created `website/design.html`
+- Created `website/game-world.html`
+- Created `website/development.html`
+- Modified `website/styles.css`
+- Modified `website/script.js`
+- Modified `website/README.md`
+- Modified `PROJECT_INDEX.md`
+- Modified `agent-development-log.md`
+- No Unity gameplay script, scene object, mechanic, visual asset, or input behavior was changed by the AI Agent in this step.
+
+### Immediate Result
+The local website now has four clear subpages: Game, Design, Game World, and Development. The Game page remains the future WebGL host, while Development loads the collaboration timeline from `agent-development-log.md`.
+
+### Student Follow-up
+No follow-up decision yet. The next likely step is to preview each page and decide whether the Game World page should use screenshots from the actual Unity scene once the visual direction stabilizes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 08 — Raw Interaction Log
+
+**Time:** 2026-06-23 11:29 CST  
+**Development Stage:** Design page framework graph integration  
+**Current Goal:** Embed the student's game framework graph into the Design page of the local website.
+
+### Student Prompt
+The student asked the AI Agent to embed the game framework graph into the `Design` page.
+
+### Agent Response Summary
+The AI Agent added a structured framework graph to `website/design.html`. The graph presents the design model in three columns: `Game World`, `Player Input`, and `Game Resource`. It includes win and game-over conditions, the GT timer update, player inputs that decrease or increase NoP, and resources for NoP, RWT, and GT.
+
+### Development Action
+Converted the framework graph from the earlier concept into an editable HTML/CSS diagram on the Design page.
+
+### Files / Mechanics Changed
+- Modified `website/design.html`
+- Modified `website/styles.css`
+- Modified `PROJECT_INDEX.md`
+- Modified `agent-development-log.md`
+- No Unity gameplay script, scene object, mechanic, visual asset, or input behavior was changed by the AI Agent in this step.
+
+### Immediate Result
+The Design page now contains an embedded framework graph that makes the queue system, player inputs, data resources, and win/loss states visible on the website.
+
+### Student Follow-up
+No follow-up decision yet. The next likely step is to visually review the graph and decide whether it should exactly match the original screenshot layout or be simplified for readability on the website.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 09 — Raw Interaction Log
+
+**Time:** 2026-06-23 11:34 CST  
+**Development Stage:** Design page framework graph visual correction  
+**Current Goal:** Fix the framework graph annotation lines because they were connected incorrectly and looked visually rough.
+
+### Student Prompt
+The student pointed out that the annotation lines in the Design page framework graph were connected incorrectly and were not visually appealing, providing a screenshot of the problem.
+
+### Agent Response Summary
+The AI Agent replaced the previous HTML-node graph with an integrated SVG diagram. The new graph uses one shared coordinate system for all cards, diamonds, columns, and arrows, so the connection lines stay aligned with their target nodes. The visual layout keeps the three-column structure: `Game World`, `Player Input`, and `Game Resource`.
+
+### Development Action
+Rebuilt the framework graph rendering approach for cleaner annotation lines and more stable layout behavior.
+
+### Files / Mechanics Changed
+- Modified `website/design.html`
+- Modified `website/styles.css`
+- Modified `agent-development-log.md`
+- No Unity gameplay script, scene object, mechanic, visual asset, or input behavior was changed by the AI Agent in this step.
+
+### Immediate Result
+The Design page framework graph now uses a cleaner SVG layout with arrow lines connected to specific diagram nodes instead of loosely overlaid on top of responsive HTML cards.
+
+### Student Follow-up
+No follow-up decision yet. The next likely step is to visually review whether the new SVG graph matches the student's intended framework closely enough.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 10 — Raw Interaction Log
+
+**Time:** 2026-06-23 11:39 CST  
+**Development Stage:** Design graph line-weight refinement  
+**Current Goal:** Make the framework graph arrows smaller and the annotation lines thinner for better visual readability.
+
+### Student Prompt
+The student suggested that the Design page framework graph would look better if the arrows were smaller and the lines were thinner.
+
+### Agent Response Summary
+The AI Agent reduced the SVG arrow marker size, reduced the connector line stroke width, lowered the connector opacity, and slightly pulled arrow endpoints back so arrowheads do not visually intrude into the nodes as much.
+
+### Development Action
+Refined the visual styling of the framework graph without changing the graph content or the website structure.
+
+### Files / Mechanics Changed
+- Modified `website/design.html`
+- Modified `website/styles.css`
+- Modified `agent-development-log.md`
+- No Unity gameplay script, scene object, mechanic, visual asset, or input behavior was changed by the AI Agent in this step.
+
+### Immediate Result
+The Design page graph now uses lighter, thinner connector lines and smaller arrowheads, making the annotation layer less visually dominant.
+
+### Student Follow-up
+No follow-up decision yet. The next likely step is to visually review the revised graph and decide whether any arrow routes should be removed or simplified.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 11 — Raw Interaction Log
+
+**Time:** 2026-06-23 12:22 CST  
+**Development Stage:** Unity WebGL build attempt  
+**Current Goal:** Package the playable `SampleScene` demo as a WebGL build and place it in `website/game/`.
+
+### Student Prompt
+The student said Unity had been closed and asked the AI Agent to try building the Web version again.
+
+### Agent Response Summary
+The AI Agent created a Unity Editor build script at `Assets/Editor/WebGLBuild.cs` to export enabled Build Settings scenes to `website/game/`, with WebGL compression disabled for easier local hosting. The AI Agent then ran Unity 6000.3.6f1 in batch mode targeting WebGL.
+
+The first prior attempt had failed because Unity was still open. After Unity was closed, the batch process started successfully, but the build failed with `Error building player because build target was unsupported`. The local Unity installation does not include `WebGLSupport`, so this machine cannot currently export WebGL for Unity 6000.3.6f1.
+
+### Development Action
+Prepared the project for automated WebGL export and attempted the build. The build did not complete because the required Unity WebGL Build Support module is missing.
+
+### Files / Mechanics Changed
+- Created `Assets/Editor/WebGLBuild.cs`
+- Created `Assets/Editor.meta`
+- Modified `.gitignore` to ignore `webgl-build.log` and Unity-generated PerformanceTest run resources
+- Modified `agent-development-log.md`
+- No Unity gameplay script, scene object, mechanic, visual asset, or input behavior was changed by the AI Agent in this step.
+
+### Immediate Result
+No WebGL build was generated. `website/game/index.html` still does not exist, so the website game area remains in the "Web build not exported yet" state. The build can be retried after installing the WebGL Build Support module for Unity 6000.3.6f1.
+
+### Student Follow-up
+The student needs to install WebGL Build Support for Unity 6000.3.6f1 through Unity Hub, or provide another Unity installation that already includes WebGL support.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 12 — Raw Interaction Log
+
+**Time:** 2026-06-23 12:35 CST  
+**Development Stage:** GitHub Pages website hosting  
+**Current Goal:** Host the local project website on GitHub Pages.
+
+### Student Prompt
+The student asked the AI Agent to host the website using GitHub Pages.
+
+### Agent Response Summary
+The AI Agent prepared the static website for GitHub Pages deployment. Because GitHub Pages will publish the `website/` directory as the site root, the AI Agent copied the visual reference images into `website/assets/sprits/`, changed the Game World page image paths to use those local website assets, and adjusted the timeline script to load `agent-development-log.md` from the site root with a local-development fallback. The AI Agent also created a GitHub Actions workflow to deploy the website to GitHub Pages.
+
+### Development Action
+Configured GitHub Pages deployment for the website without changing Unity gameplay. The deployment workflow publishes the `website/` folder and copies the latest root development log into the published site artifact.
+
+### Files / Mechanics Changed
+- Created `.github/workflows/deploy-website.yml`
+- Added website image copies under `website/assets/sprits/`
+- Modified `website/game-world.html`
+- Modified `website/script.js`
+- Modified `website/README.md`
+- Modified `PROJECT_INDEX.md`
+- Modified `agent-development-log.md`
+- No Unity gameplay script, scene object, mechanic, visual asset, or input behavior was changed by the AI Agent in this step.
+
+### Immediate Result
+The website is ready to be deployed through GitHub Pages from the `main` branch using GitHub Actions. After the workflow runs successfully, the website should be available from the repository's GitHub Pages URL.
+
+### Student Follow-up
+No follow-up decision yet. The next likely step is to push the GitHub Pages workflow and website files to GitHub, then confirm the Pages URL once deployment completes.

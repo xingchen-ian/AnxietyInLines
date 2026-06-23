@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Game World - Anxiety In Lines</title>
+    <meta name="description" content="Game world, assets, and implementation state for Anxiety In Lines.">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Anxiety In Lines home">
+        <span class="brand-mark"></span>
+        <span>Anxiety In Lines</span>
+      </a>
+      <nav class="nav" aria-label="Site navigation">
+        <a href="index.html">Game</a>
+        <a href="design.html">Design</a>
+        <a class="active" href="game-world.html">Game World</a>
+        <a href="development.html">Development</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <p class="eyebrow">Game World</p>
+        <h1>People, line, counter, pressure</h1>
+        <p class="lead">
+          The world is intentionally small: a counter, a queue, strangers nearby, and a player trying to move forward before time runs out.
+        </p>
+      </section>
+
+      <section class="content-section asset-section">
+        <div class="section-heading">
+          <p class="eyebrow">Visual Direction</p>
+          <h2>Current art and motion tests</h2>
+        </div>
+        <div class="asset-grid">
+          <figure>
+            <img src="assets/sprits/queue-reference.jpg" alt="Queue background reference used in the Unity project">
+            <figcaption>Queue setting reference</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/sprits/character-sheet.png" alt="Character sprite sheet imported into the Unity project">
+            <figcaption>Character sprite source</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/sprits/walk-cycle-sheet.png" alt="Walk and run cycle sprite sheet imported into the Unity project">
+            <figcaption>Walk cycle sprite source</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-heading">
+          <p class="eyebrow">Unity Implementation</p>
+          <h2>Current world structure</h2>
+        </div>
+        <div class="build-grid">
+          <article>
+            <h3>SampleScene</h3>
+            <p>Contains the queue prototype controller. <code>GameManager</code> creates the floor, counter, slots, NPCs, player, and HUD at runtime.</p>
+          </article>
+          <article>
+            <h3>GreenGuy Scene</h3>
+            <p>Tests character movement, sprite animation, Rigidbody2D behavior, and Cinemachine camera setup.</p>
+          </article>
+          <article>
+            <h3>Imported Assets</h3>
+            <p>Current visual references live in <code>Assets/Sprits/</code>, with GreenGuy animation clips and controller in <code>Assets/Animations/</code>.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Anxiety In Lines</span>
+      <span>Game world, assets, and implementation state.</span>
+    </footer>
+  </body>
+</html>

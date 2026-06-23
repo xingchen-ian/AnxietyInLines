@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Game - Anxiety In Lines</title>
+    <meta name="description" content="Play and preview the Web version of Anxiety In Lines.">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Anxiety In Lines home">
+        <span class="brand-mark"></span>
+        <span>Anxiety In Lines</span>
+      </a>
+      <nav class="nav" aria-label="Site navigation">
+        <a class="active" href="index.html">Game</a>
+        <a href="design.html">Design</a>
+        <a href="game-world.html">Game World</a>
+        <a href="development.html">Development</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Game</p>
+          <h1>Anxiety In Lines</h1>
+          <p class="lead">
+            A queue-based game about waiting, uncertainty, social pressure, and the small negotiations people make while trying to move forward.
+          </p>
+          <div class="hero-actions" aria-label="Primary links">
+            <a class="button primary" href="#play">Play Web version</a>
+            <a class="button secondary" href="design.html">View design model</a>
+          </div>
+        </div>
+
+        <div class="queue-stage" aria-label="Queue mechanic visualization">
+          <div class="counter">Ticket Counter</div>
+          <div class="lane">
+            <span class="person served"></span>
+            <span class="person anxious"></span>
+            <span class="person slow"></span>
+            <span class="person player"></span>
+            <span class="person waiting"></span>
+          </div>
+          <div class="stage-panel">
+            <span>NoP: 3</span>
+            <span>GT: 31.8s</span>
+            <span>RWT: random</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="status-band" aria-label="Current project status">
+        <div>
+          <span class="status-label">Unity</span>
+          <strong>6000.3.6f1</strong>
+        </div>
+        <div>
+          <span class="status-label">Prototype</span>
+          <strong>Queue V1 + GreenGuy test</strong>
+        </div>
+        <div>
+          <span class="status-label">WebGL</span>
+          <strong id="webglStatus">Checking</strong>
+        </div>
+        <div>
+          <span class="status-label">Core data</span>
+          <strong>NoP / GT / RWT</strong>
+        </div>
+      </section>
+
+      <section id="play" class="split-section">
+        <div class="section-copy">
+          <p class="eyebrow">Final Game Area</p>
+          <h2>Playable Web Version</h2>
+          <p>
+            This page is the Game homepage and Web build host. When the game is exported from Unity as WebGL, place the exported files in <code>website/game/</code> with the entry file at <code>website/game/index.html</code>.
+          </p>
+        </div>
+        <div class="game-frame-wrap">
+          <iframe id="gameFrame" title="Anxiety In Lines WebGL build" src="game/index.html"></iframe>
+          <div id="gameFallback" class="game-fallback">
+            <h3>Web build not exported yet</h3>
+            <p>The showcase is ready. Export the Unity project as WebGL and put the build output in <code>website/game/</code>.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Anxiety In Lines</span>
+      <span>Game page and future Unity WebGL host.</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 # Anxiety In Lines Project Index
 
-Last indexed: 2026-06-09 20:37 CST
+Last indexed: 2026-06-23
 
 ## Overview
 
@@ -10,7 +10,9 @@ This workspace contains a Unity project nested under:
 
 The project is a Unity 6 URP 2D prototype for `Anxiety In Lines`, a queue-anxiety game based on waiting in line under uncertain timing and social pressure.
 
-The first code version now exists in `Assets/Scripts/`. It implements a runtime-generated queue scene with NPCs, a player, a timer, negotiation/cut-in behavior, win/loss logic, and a HUD. At this index pass, the code files exist, but the active `SampleScene` does not yet reference `GameManager`, `PlayerController`, `NPCController`, or `GameUI`. That means the first version may not run from the scene until a `GameManager` object is added to the scene or another bootstrap path is created.
+The first code version exists in `Assets/Scripts/`. It implements a runtime-generated queue scene with NPCs, a player, a timer, negotiation/cut-in behavior, win/loss logic, and a HUD. `SampleScene` now includes a `GameController` object that references `GameManager`, while the GreenGuy scene is being used for character movement and animation testing.
+
+The project now also has a local showcase website under `website/`. The website presents the project concept, development timeline, current implementation state, imported visual assets, and a placeholder area for the final Unity WebGL build.
 
 ## Unity Version
 
@@ -31,6 +33,7 @@ Source:
 | `Anxiety In Lines/Assets/` | Authored Unity assets, scenes, render settings, input actions | Yes |
 | `Anxiety In Lines/Packages/` | Unity package manifest and lockfile | Yes |
 | `Anxiety In Lines/ProjectSettings/` | Unity project configuration | Yes |
+| `website/` | Local project showcase website and future Unity WebGL host | Yes |
 | `Anxiety In Lines/UserSettings/` | Local editor/user preferences | Usually no |
 | `Anxiety In Lines/Library/` | Unity generated cache/import database | No |
 | `Anxiety In Lines/Temp/` | Unity temporary files | No |
@@ -43,19 +46,29 @@ Source:
 Current non-meta authored files in `Assets/`:
 
 - `Assets/Scenes/SampleScene.unity`
+- `Assets/Scenes/GreenGuy.unity`
 - `Assets/Settings/Scenes/URP2DSceneTemplate.unity`
 - `Assets/InputSystem_Actions.inputactions`
 - `Assets/Scripts/GameManager.cs`
 - `Assets/Scripts/GameUI.cs`
+- `Assets/Scripts/GreenGuy_AnimationManager.cs`
+- `Assets/Scripts/GreenGuy_Controller.cs`
 - `Assets/Scripts/NPCController.cs`
 - `Assets/Scripts/PlayerController.cs`
+- `Assets/Animations/GreenGuy.controller`
+- `Assets/Animations/GreenGuy_Idle.anim`
+- `Assets/Animations/GreenGuy_WalkDownward.anim`
+- `Assets/Animations/GreenGuy_Walking.anim`
+- `Assets/Sprits/303-3035187_adv-chara-2d-character-sprite-png.png`
+- `Assets/Sprits/360_F_114471205_0O1mMyKE100dWY4kqoDKBNYJDto53kkt.jpg`
+- `Assets/Sprits/pngtree-character-sprite-sheet-with-walk-cycle-and-run-cycle-sequence-png-image_15099942.png`
 - `Assets/DefaultVolumeProfile.asset`
 - `Assets/UniversalRenderPipelineGlobalSettings.asset`
 - `Assets/Settings/Renderer2D.asset`
 - `Assets/Settings/UniversalRP.asset`
 - `Assets/Settings/Lit2DSceneTemplate.scenetemplate`
 
-Including `.meta` files, `Assets/` currently contains 28 files.
+The project has continued beyond the initial V1 script-only prototype. New local Unity work includes the `GreenGuy` scene, sprite assets, and animation assets.
 
 ## Script Index
 
@@ -130,21 +143,65 @@ Current risk:
 
 - Restart input reads `Keyboard.current.rKey` without a null check. This is usually fine on desktop, but it can throw an error on a platform/session without an active keyboard device.
 
+### `Assets/Scripts/GreenGuy_Controller.cs`
+
+Character movement test controller.
+
+Responsibilities:
+
+- Gets a `Rigidbody2D` from the attached object.
+- Reads horizontal input through `Input.GetAxis("Horizontal")`.
+- Applies horizontal velocity to the character.
+
+Current risks:
+
+- The script logs velocity every frame, which can become noisy during play.
+- Movement accumulates `rb.linearVelocity.x + input * speed`, so the character may keep accelerating rather than moving at a capped speed.
+
+### `Assets/Scripts/GreenGuy_AnimationManager.cs`
+
+Animation state test controller.
+
+Responsibilities:
+
+- Uses horizontal input to set the `WalkSideway` animator boolean.
+- Contains commented-out vertical walking logic for possible future use.
+
+Current risks:
+
+- `animator` is public and not automatically assigned because `GetComponent<Animator>()` is commented out. The scene must assign this reference in the Inspector.
+- Debug logging occurs during horizontal input.
+
 ## Scene Index
 
 ### `Assets/Scenes/SampleScene.unity`
 
-Detected scene objects:
+Detected key scene objects:
 
 - `Main Camera`
 - `Global Light 2D`
+- `GameController`
 
-No custom gameplay object was detected in the scene file.
+Current integration note:
 
-Important integration note:
+- `SampleScene.unity` now references `GameManager` through a `GameController` object. This addresses the earlier scene-integration gap found in the first V1 check.
+- `PlayerController`, `NPCController`, and `GameUI` are still created or used through runtime flow rather than pre-authored scene objects.
 
-- The script GUIDs for `GameManager`, `PlayerController`, `NPCController`, and `GameUI` do not appear in `SampleScene.unity`.
-- Because `GameManager` is responsible for creating the runtime game objects, the current scene needs a GameObject with `GameManager` attached, or an equivalent bootstrap method, before the V1 gameplay can run.
+### `Assets/Scenes/GreenGuy.unity`
+
+Character movement and animation test scene.
+
+Detected key objects:
+
+- background/sprite reference object
+- `Player`
+- `Player (1)`
+- `GreenGuy`
+- `Main Camera`
+- `Global Light 2D`
+- `CinemachineCamera_2D`
+
+This scene appears to test a GreenGuy character sprite, animator controller, Rigidbody2D movement, and Cinemachine camera setup.
 
 ### `Assets/Settings/Scenes/URP2DSceneTemplate.unity`
 
@@ -196,6 +253,52 @@ Core variables from the concept are present:
 - `GT`: implemented as `remainingTime`, reduced by `Time.deltaTime`.
 - `RWT`: implemented as per-NPC random wait time using `Random.Range(minRWT, maxRWT)`.
 
+## Website Index
+
+The local showcase website is located at:
+
+- `website/index.html`
+- `website/design.html`
+- `website/game-world.html`
+- `website/development.html`
+- `website/styles.css`
+- `website/script.js`
+- `website/README.md`
+- `website/game/README.md`
+- `.github/workflows/deploy-website.yml`
+
+Website purpose:
+
+- Use `Game` as the homepage and future WebGL host.
+- Present the game concept and everyday-life source.
+- Show the NoP / GT / RWT data model.
+- Embed the game framework graph on the Design page.
+- Present the game world, imported visual assets, and GreenGuy test.
+- Display imported visual assets from the Unity project.
+- Load the chronological development timeline from `agent-development-log.md`.
+- Reserve a playable area for the final Unity WebGL export.
+- Deploy the website to GitHub Pages through GitHub Actions.
+
+Run locally from the repository root:
+
+```sh
+python3 -m http.server 8000
+```
+
+Then open:
+
+```text
+http://localhost:8000/website/
+```
+
+Future WebGL export location:
+
+```text
+website/game/index.html
+```
+
+Until a Unity WebGL build exists at that path, the website displays a "Web build not exported yet" state.
+
 ## Rendering Index
 
 The project is configured for Universal Render Pipeline 2D:
@@ -230,16 +333,18 @@ Package files:
 
 ## Current Development State
 
-The repository is not initialized as Git from the workspace root.
+The repository is initialized as Git from the workspace root and is connected to GitHub:
 
-The project now contains a first code prototype, but scene integration and playtesting still need confirmation:
+- `https://github.com/xingchen-ian/AnxietyInLines`
 
-- 4 custom C# scripts found in `Assets/Scripts/`
+The project now contains a first code prototype, a GreenGuy movement/animation test, and a local showcase website:
+
+- 6 custom C# scripts found in `Assets/Scripts/`
 - Runtime-created visual objects are used instead of authored sprites or prefabs
-- No custom prefabs found in `Assets/`
-- No project-specific sprites/images/audio found in `Assets/`
+- Imported sprites now exist under `Assets/Sprits/`
+- GreenGuy animation assets now exist under `Assets/Animations/`
 - No test folders found in `Assets/`
-- `PROJECT_INDEX.md` and `agent-development-log.md` exist at the workspace root
+- `PROJECT_INDEX.md`, `agent-development-log.md`, and `website/` exist at the workspace root
 
 ## V1 Check Findings
 
@@ -258,12 +363,12 @@ Items that look implemented:
 
 Items that need verification or follow-up:
 
-- Add or confirm a `GameManager` object in `SampleScene`; currently the scene file does not reference the script.
 - Confirm the project compiles in Unity Editor after opening the scene.
 - Confirm the player can actually trigger the full loop from start to win/loss.
 - Consider replacing direct keyboard reads with the existing Input System action asset if controller/remapping support matters.
 - Add stronger emotional feedback for anxiety, such as crowd pressure, visible impatience, queue uncertainty, or sound/visual tension.
 - Add authored visuals later if the prototype needs to communicate more than abstract colored blocks.
+- Export a Unity WebGL build into `website/game/` when ready.
 
 ## Size Notes
 
