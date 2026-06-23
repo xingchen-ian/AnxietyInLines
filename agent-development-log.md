@@ -366,3 +366,282 @@ The website is ready to be deployed through GitHub Pages from the `main` branch 
 
 ### Student Follow-up
 No follow-up decision yet. The next likely step is to push the GitHub Pages workflow and website files to GitHub, then confirm the Pages URL once deployment completes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 13 — Raw Interaction Log
+
+**Time:** 2026-06-23 13:48 CST  
+**Development Stage:** Unity queue timing refinement  
+**Current Goal:** Shorten NPC follow-up delay and make counter service time randomized and more visible.
+
+### Student Prompt
+The student said the 3-7 second delay before NPCs follow the person ahead was too long. They asked to change that random waiting time to 0.5-1.0 seconds, and also asked for NPC service time at the counter to become randomized rather than always 3 seconds, with a clearer 3-7 second duration.
+
+### Agent Response Summary
+The AI Agent changed the queue follow-up timing so NPCs now wait a short random time between 0.5 and 1.0 seconds before moving into a newly opened slot. The AI Agent also replaced the fixed `serviceTime` setting with `minServiceTime` and `maxServiceTime`, so each NPC now receives an individually randomized 3-7 second service duration when entering the counter slot.
+
+### Development Action
+Refined the queue pacing: normal slot compression now feels responsive, while the counter remains a visible source of uncertainty and delay.
+
+### Files / Mechanics Changed
+- Modified `Assets/Scripts/GameManager.cs`
+- Modified `Assets/Scripts/NPCController.cs`
+- Modified `Assets/Scenes/SampleScene.unity`
+- Modified `PROJECT_INDEX.md`
+- Modified `agent-development-log.md`
+
+### Immediate Result
+NPCs should now follow opened queue slots much faster, while the front-of-line service stage should last a noticeable random duration between 3 and 7 seconds.
+
+### Student Follow-up
+No follow-up decision yet. The next likely step is to playtest whether 0.5-1.0 seconds feels responsive enough while preserving the intended anxiety from uncertain service time.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 14 — Raw Interaction Log
+
+**Time:** 2026-06-23 13:55 CST  
+**Development Stage:** Unity concept-art layout alignment  
+**Current Goal:** Change the playable queue from vertical movement to horizontal movement based on the provided ticket-counter concept art.
+
+### Student Prompt
+The student provided a concept art image showing a ticket counter with people arranged horizontally, then asked the AI Agent to change the game to horizontal movement.
+
+### Agent Response Summary
+The AI Agent changed the runtime-generated queue layout from vertical slots to horizontal slots. The queue now places the counter/front of line on the left, with the player and NPCs arranged across the screen and advancing from right to left. The AI Agent also updated the player movement input so `LeftArrow`, `A`, and the previous `UpArrow` can all trigger forward movement, and updated the HUD control hint accordingly.
+
+### Development Action
+Adjusted the playable prototype layout to better match the concept art's horizontal ticket-counter composition while preserving the existing queue-slot, negotiation, NoP, RWT, and timed service mechanics.
+
+### Files / Mechanics Changed
+- Modified `Assets/Scripts/GameManager.cs`
+- Modified `Assets/Scripts/PlayerController.cs`
+- Modified `Assets/Scripts/GameUI.cs`
+- Modified `PROJECT_INDEX.md`
+- Modified `agent-development-log.md`
+
+### Immediate Result
+The playable queue should now read as a horizontal line, with the player moving leftward toward the counter/front slot instead of upward through a vertical queue.
+
+### Student Follow-up
+No follow-up decision yet. The next likely step is to open `SampleScene` in Unity and check whether the horizontal spacing, camera framing, and ticket-window visual markers match the concept art well enough.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 15 — Raw Interaction Log
+
+**Time:** 2026-06-23 14:00 CST  
+**Development Stage:** Unity service-desk and win-condition fix  
+**Current Goal:** Keep only one desk at the end of the horizontal queue and make the player wait for service before winning.
+
+### Student Prompt
+The student reported two problems in the horizontal prototype: there were multiple desks/windows instead of one desk at the end, and the game showed "You Win" immediately when the player reached the end instead of making the player wait through the 3-7 second service time.
+
+### Agent Response Summary
+The AI Agent changed the runtime-generated counter from three ticket windows to one service desk aligned with the front slot. The AI Agent also changed the win condition: reaching the front now starts a player service state with a randomized 3-7 second timer, displays a "Being served" countdown, blocks further movement during service, and only shows the win screen after the service timer completes.
+
+### Development Action
+Fixed the horizontal queue's end-state logic so the counter behaves like a single service point and the player experiences the same uncertain service delay as NPCs.
+
+### Files / Mechanics Changed
+- Modified `Assets/Scripts/GameManager.cs`
+- Modified `Assets/Scripts/PlayerController.cs`
+- Modified `Assets/Scripts/GameUI.cs`
+- Modified `Assets/Scenes/SampleScene.unity`
+- Modified `PROJECT_INDEX.md`
+- Modified `agent-development-log.md`
+
+### Immediate Result
+The playable scene should now show one desk at the left/front end. When the player reaches it, the game should display a 3-7 second service countdown before showing the win screen.
+
+### Student Follow-up
+No follow-up decision yet. The next likely step is to playtest the end of the queue and confirm that the service countdown is visible and readable.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 16 — Raw Interaction Log
+
+**Time:** 2026-06-23 14:04 CST  
+**Development Stage:** Unity player service-time UI  
+**Current Goal:** Show the player's service time as a dedicated UI element on screen.
+
+### Student Prompt
+The student asked to show the player's time as a UI element on screen.
+
+### Agent Response Summary
+The AI Agent added a dedicated top-center HUD text element for the player's counter service time. It displays `Service: --` before service begins, then updates every frame to show `Service: X.Xs` while the player is being served.
+
+### Development Action
+Made the player service timer easier to read by separating it from the temporary center result prompt.
+
+### Files / Mechanics Changed
+- Modified `Assets/Scripts/GameUI.cs`
+- Modified `PROJECT_INDEX.md`
+- Modified `agent-development-log.md`
+
+### Immediate Result
+The playable scene should now show a persistent service-time UI field at the top center of the screen.
+
+### Student Follow-up
+No follow-up decision yet. The next likely step is to playtest the service stage and decide whether the UI should be hidden until service starts or remain visible as `Service: --`.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 17 — Raw Interaction Log
+
+**Time:** 2026-06-23 14:13 CST  
+**Development Stage:** Unity GT HUD correction  
+**Current Goal:** Remove the service-time UI and move the GT timer from the top right to the top center.
+
+### Student Prompt
+The student reported UI problems, asked to remove the middle service time display, and asked to place the right-top GT timer in the middle. The student clarified that GT is the game time in the design graph.
+
+### Agent Response Summary
+The AI Agent removed the dedicated `Service: --` HUD element and stopped showing a middle service-time prompt during player service. The existing GT display, backed by `GameManager.remainingTime`, was moved from the top-right corner to the top-center of the screen.
+
+### Development Action
+Simplified the HUD so the central visible time corresponds to GT rather than the player's service sub-timer.
+
+### Files / Mechanics Changed
+- Modified `Assets/Scripts/GameUI.cs`
+- Modified `PROJECT_INDEX.md`
+- Modified `agent-development-log.md`
+
+### Immediate Result
+The playable scene should now show GT at the top center and no longer show `Service: --` or a middle service-time countdown.
+
+### Student Follow-up
+No follow-up decision yet. The next likely step is to playtest the scene and confirm that the top-center GT timer is visually centered and readable.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 18 — Raw Interaction Log
+
+**Time:** 2026-06-23 14:18 CST  
+**Development Stage:** Unity background art integration  
+**Current Goal:** Use the `Background` sprite from the Unity `Assets/Sprites` folder as the scene background.
+
+### Student Prompt
+The student said there is a sprite file named `Background` in the Sprites folder and asked the AI Agent to place it as the background.
+
+### Agent Response Summary
+The AI Agent added a `backgroundSprite` reference to `GameManager`, assigned `Assets/Sprites/Background.png` to the `GameController` in `SampleScene`, and added runtime background creation using a `SpriteRenderer`. When the background sprite is assigned, the previous generated floor/counter fallback is not drawn, so the imported concept-art ticket counter can serve as the visual background.
+
+### Development Action
+Integrated the imported ticket-counter art into the playable prototype as the scene background while keeping NPCs, the player, queue markers, and UI rendered in front.
+
+### Files / Mechanics Changed
+- Modified `Assets/Scripts/GameManager.cs`
+- Modified `Assets/Scenes/SampleScene.unity`
+- Modified `PROJECT_INDEX.md`
+- Modified `agent-development-log.md`
+
+### Immediate Result
+The playable `SampleScene` should now instantiate `Assets/Sprites/Background.png` as a back-layer sprite instead of showing the generated dark floor and simple counter.
+
+### Student Follow-up
+No follow-up decision yet. The next likely step is to playtest and adjust the background position/scale if the imported art is not framed correctly in the Game view.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 19 — Raw Interaction Log
+
+**Time:** 2026-06-23 14:28 CST  
+**Development Stage:** Unity queue pressure refinement  
+**Current Goal:** Add a new NPC behind the player after the player moves forward.
+
+### Student Prompt
+The student said that after the player moves forward, a new NPC should be added into the position behind the player.
+
+### Agent Response Summary
+The AI Agent added a queue refill behavior to `GameManager`: after the player successfully moves forward, the game checks the slot directly behind the player. If that slot exists and is empty, a new NPC is spawned into that slot. The new NPC is behind the player, so it does not increase `NoP`, but it occupies the queue and reinforces the feeling that people are filling in behind the player.
+
+### Development Action
+Added a backfill mechanic that keeps the queue socially crowded behind the player after forward progress.
+
+### Files / Mechanics Changed
+- Modified `Assets/Scripts/GameManager.cs`
+- Modified `PROJECT_INDEX.md`
+- Modified `agent-development-log.md`
+
+### Immediate Result
+Each successful player forward move should now fill the newly opened slot behind the player with a new NPC when that slot is available.
+
+### Student Follow-up
+No follow-up decision yet. The next likely step is to playtest several moves in a row and confirm that the new NPC appears behind the player without blocking the player's forward progress.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 20 — Raw Interaction Log
+
+**Time:** 2026-06-23 14:35 CST  
+**Development Stage:** Unity queue refill correction  
+**Current Goal:** Spawn new NPCs from the final queue position, not directly behind the player.
+
+### Student Prompt
+The student clarified that new NPCs should not be added directly behind the player. Instead, they should be added from the final position of the queue, and people behind the player should follow the player using the existing minRWT/maxRWT delay.
+
+### Agent Response Summary
+The AI Agent changed the refill behavior from `SpawnNPCBehindPlayer` to `SpawnNPCAtQueueEnd`. After a successful player move, the game now checks the final queue slot (`totalNPCs + 1`) and only spawns a new NPC there if that final slot is empty. Existing NPCs behind the player continue to move forward through `NPCController` using the random wait time between `minRWT` and `maxRWT`.
+
+### Development Action
+Corrected the queue refill model so new people enter from the back of the line, while nearby followers advance naturally through the existing delayed movement rule.
+
+### Files / Mechanics Changed
+- Modified `Assets/Scripts/GameManager.cs`
+- Modified `PROJECT_INDEX.md`
+- Modified `agent-development-log.md`
+
+### Immediate Result
+New NPCs should now enter from the last queue slot instead of appearing directly behind the player.
+
+### Student Follow-up
+No follow-up decision yet. The next likely step is to playtest several moves and confirm that the tail fills correctly while existing NPCs follow forward after their random wait.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 21 — Raw Interaction Log
+
+**Time:** 2026-06-23 15:40 CST  
+**Development Stage:** Unity negotiation balance tuning  
+**Current Goal:** Lower the success rate for negotiating/cutting in.
+
+### Student Prompt
+The student said the success rate for negotiating with the person ahead to cut in was too high and asked the AI Agent to lower it.
+
+### Agent Response Summary
+The AI Agent reduced `cutSuccessChance` from 0.6 to 0.3 in both the `GameManager` script default and the `SampleScene` serialized `GameController` value.
+
+### Development Action
+Rebalanced negotiation so cutting in is still possible but less reliable.
+
+### Files / Mechanics Changed
+- Modified `Assets/Scripts/GameManager.cs`
+- Modified `Assets/Scenes/SampleScene.unity`
+- Modified `PROJECT_INDEX.md`
+- Modified `agent-development-log.md`
+
+### Immediate Result
+Cut-in attempts should now succeed about 30% of the time instead of 60%.
+
+### Student Follow-up
+No follow-up decision yet. The next likely step is to playtest several negotiation attempts and decide whether 0.3 is still too generous or too punishing.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 22 — Raw Interaction Log
+
+**Time:** 2026-06-23 15:46 CST  
+**Development Stage:** Website visual style redesign  
+**Current Goal:** Restyle the project website using the student's visual reference.
+
+### Student Prompt
+The student provided a visual reference image showing bold retro poster compositions with black backgrounds, cream panels, heavy geometric typography, and strong red, orange, purple, olive, and teal accents. The student asked the AI Agent to redecorate the website based on this style.
+
+### Agent Response Summary
+The AI Agent updated the website's shared stylesheet to give all four pages a stronger retro poster-inspired direction. The redesign introduced a black page background, cream poster panels, hard borders, block shadows, uppercase heavy headings, geometric decorative marks, colored status bands, and a stronger red/orange/purple/olive/green palette.
+
+### Development Action
+Changed the website's visual art direction while preserving the existing four-page information architecture and GitHub Pages structure.
+
+### Files / Mechanics Changed
+- Modified `website/styles.css`
+- Modified `agent-development-log.md`
+- No Unity gameplay script, scene object, mechanic, visual asset, or input behavior was changed by the AI Agent in this step.
+
+### Immediate Result
+The local website now looks closer to the provided retro graphic poster reference while keeping the Game, Design, Game World, and Development pages intact.
+
+### Student Follow-up
+No follow-up decision yet. The next likely step is to visually review the redesigned pages and decide whether to push the updated style to GitHub Pages.
