@@ -675,3 +675,34 @@ The next GitHub Pages deployment should force browsers to request the updated po
 
 ### Student Follow-up
 No follow-up decision yet. The next likely step is to refresh the GitHub Pages URL after deployment and confirm that the visual style changes are visible.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 24 — Raw Interaction Log
+
+**Time:** 2026-06-23 22:20 CST  
+**Development Stage:** Website visual readability correction  
+**Current Goal:** Fix poster-style decoration overlap on the Game page and low contrast on the Design page.
+
+### Student Prompt
+The student provided screenshots showing two visual problems: three green-brown rectangular decoration blocks on the Game page were covering content in the lower-right area, and part of the Design page was too dark and blended into the background.
+
+### Agent Response Summary
+The AI Agent identified the Game page obstruction as the shared hero/page decorative `::after` layer painting above the actual hero content. The AI Agent moved the decorative layer behind the hero content with z-index layering. For the Design page, the AI Agent increased the framework section contrast by making the section heading text light, strengthening the supporting paragraph color, and giving the graph wrapper a light poster-paper background. The stylesheet version string was also updated so GitHub Pages browsers request the corrected CSS.
+
+### Development Action
+Refined the poster-inspired website style so decorative shapes no longer block readable game content and the Design framework section remains legible against the dark background.
+
+### Files / Mechanics Changed
+- Modified `website/styles.css`
+- Modified `website/index.html`
+- Modified `website/design.html`
+- Modified `website/game-world.html`
+- Modified `website/development.html`
+- Modified `agent-development-log.md`
+- No Unity gameplay script, scene object, mechanic, visual asset, or input behavior was changed by the AI Agent in this step.
+
+### Immediate Result
+Local browser checks show the Game page decoration layer now sits behind the content, the Design framework section has readable light text, and the stylesheet link uses `styles.css?v=20260623-poster-fix`.
+
+### Student Follow-up
+No follow-up decision yet. The next likely step is to verify the same fixes after GitHub Pages finishes deployment.
